@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useRef, useState } from 'react';
 import './App.css';
+import Carousel from './components/Carousel';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import Values from './components/Values';
+import Work from './components/Work';
 
 function App() {
+  const [navbarShow, setNavbarShow] = useState(true);
+  const valuesRef = useRef(null);
+  const contactRef = useRef(null);
+  const handleNavbar = (x) => {
+    console.log(x);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div onScroll={handleNavbar}>
+      <Navbar isShow={navbarShow} valuesRef={valuesRef} contactRef={contactRef} />
+      <Carousel />
+      <Values refrence={valuesRef} />
+      <Contact refrence={contactRef} />
+      <Footer />
     </div>
   );
 }
